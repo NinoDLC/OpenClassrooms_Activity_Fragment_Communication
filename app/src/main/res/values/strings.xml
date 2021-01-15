@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DemoActivityRecyclerView</string>
+    <string name="random">Random !</string>
+</resources>
