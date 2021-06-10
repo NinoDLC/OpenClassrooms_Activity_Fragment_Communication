@@ -1,6 +1,5 @@
 package fr.delcey.demoactivityrecyclerview;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
-    private final MainFragment mainFragment;
+    private final OnBookClickedListener listener;
     private final List<Book> books = new ArrayList<>();
 
-    public MainAdapter(@NonNull MainFragment mainFragment) {
-        this.mainFragment = mainFragment;
+    public BookAdapter(@NonNull OnBookClickedListener listener) {
+        this.listener = listener;
     }
 
     public void setData(List<Book> newBooks) {
@@ -35,7 +34,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(mainFragment, books.get(position));
+        holder.bind(listener, books.get(position));
     }
 
     @Override
@@ -57,11 +56,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             descriptionTextView = itemView.findViewById(R.id.item_book_description);
         }
 
-        public void bind(MainFragment mainFragment, @NonNull Book book) {
+        public void bind(OnBookClickedListener listener, @NonNull Book book) {
             rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mainFragment.onBookClicked(book);
+                    listener.onBookClicked(book);
                 }
             });
             titleTextView.setText(book.getTitle());

@@ -2,6 +2,7 @@ package fr.delcey.demoactivityrecyclerview;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements OnBookClickedListener {
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements OnBookClickedList
     }
 
     @Override
-    public void onBookClicked(Book book) {
+    public void onBookClicked(@NonNull Book book) {
         startActivity(DetailActivity.navigate(this, book));
     }
 }

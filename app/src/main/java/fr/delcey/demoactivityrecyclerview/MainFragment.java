@@ -49,9 +49,9 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainAdapter mainAdapter = new MainAdapter(this);
+        BookAdapter bookAdapter = new BookAdapter(listener);
         RecyclerView recyclerView = view.findViewById(R.id.main_recyclerview);
-        recyclerView.setAdapter(mainAdapter);
+        recyclerView.setAdapter(bookAdapter);
 
         Button button = view.findViewById(R.id.main_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +59,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 List<Book> books = generateBooks();
 
-                mainAdapter.setData(books);
+                bookAdapter.setData(books);
             }
         });
     }
@@ -75,15 +75,11 @@ public class MainFragment extends Fragment {
                 new Book(
                     "" + numberOfBooks,
                     "Book title " + i,
-                    "Book long looooooooooooooooong description that should be in multiple lines " + i
+                    "Book description  " + i
                 )
             );
         }
 
         return books;
-    }
-
-    public void onBookClicked(Book book) {
-        listener.onBookClicked(book);
     }
 }
